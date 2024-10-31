@@ -81,11 +81,12 @@ def train_model(data):
     print('Mean Squared Error for HistGradientBoostingRegressor:', mse_hgb)
 
     # write models to file
-    import pickle
     import os
+    import pickle
 
     with open(
-        f'{os.getenv("AIRFLOW_HOME")}/data/gold/models/random_forest_model.pkl', 'wb'
+        f'{os.getenv("AIRFLOW_HOME")}/data/gold/models/random_forest_model.pkl',
+        'wb',
     ) as f:
         pickle.dump(model_rf, f)
         print('Random Forest Regression model saved to file')

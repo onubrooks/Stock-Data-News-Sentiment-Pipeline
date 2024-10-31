@@ -14,6 +14,7 @@ from silver.feature_engineer_and_join_data import (
     engineer_features,
     join_and_merge_datasets,
 )
+from utils.data_quality_checks import check_data_quality_instance
 from utils.s3_helper import (
     get_insider_transaction_data_from_s3,
     get_stock_data_from_s3,
@@ -27,6 +28,7 @@ from utils.s3_helper import (
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import BranchPythonOperator
 from airflow.utils.dates import days_ago
 
 stock_data_file_path = (
@@ -38,23 +40,6 @@ transaction_data_file_path = (
 technical_indicators_data_file_path = (
     f'{os.getenv("AIRFLOW_HOME")}/data/bronze/technical_indicators_data.csv'
 )
-
-
-def check_completeness(pl_df, column_name):
-    check = Check(CheckLevel.ERROR, "Completeness")
-    validation_results_df = check.is_complete(column_name).validate(pl_df)
-    return validation_results_df["status"].to_list()
-
-
-def check_data_quality(validation_results):
-    if "FAIL" not in validation_results:
-        return ['clean_stock_data']
-    return ['stop_pipeline']
-
-
-def check_data_quality_instance(df, column_name):
-    return check_data_quality(check_completeness(df, column_name))
-
 
 with DAG(
     'Stock-Data-Pipeline',
@@ -68,15 +53,17 @@ with DAG(
         task_id='fetch_stock_data', python_callable=fetch_stock_data
     )
 
-    check_stock_data_quality = PythonOperator(
+    check_stock_data_quality = BranchPythonOperator(
         task_id='check_stock_data_quality',
+        provide_context=True,
         python_callable=check_data_quality_instance,
         op_kwargs={
             'df': pl.read_csv(stock_data_file_path),
             'column_name': 'close',
+            'data': 'stock',
         },
     )
-    stop_pipeline = BashOperator(
+    stop_stock_pipeline = BashOperator(
         task_id='stop_stock_pipeline', bash_command='exit 1'
     )
 
@@ -94,15 +81,17 @@ with DAG(
         python_callable=fetch_insider_transaction_data,
     )
 
-    check_transaction_data_quality = PythonOperator(
+    check_transaction_data_quality = BranchPythonOperator(
         task_id='check_transaction_data_quality',
+        provide_context=True,
         python_callable=check_data_quality_instance,
         op_kwargs={
             'df': pl.read_csv(transaction_data_file_path),
             'column_name': 'ticker',
+            'data': 'insider_transaction',
         },
     )
-    stop_pipeline2 = BashOperator(
+    stop_transaction_pipeline = BashOperator(
         task_id='stop_transaction_pipeline', bash_command='exit 1'
     )
 
@@ -122,16 +111,18 @@ with DAG(
         python_callable=fetch_technical_indicators_data,
     )
 
-    check_indicators_data_quality = PythonOperator(
+    check_indicators_data_quality = BranchPythonOperator(
         task_id='check_indicators_data_quality',
+        provide_context=True,
         python_callable=check_data_quality_instance,
         op_kwargs={
             'df': pl.read_csv(technical_indicators_data_file_path),
             'column_name': 'symbol',
+            'data': 'technical_indicators',
         },
     )
-    stop_pipeline3 = BashOperator(
-        task_id='stop_indicators_pipeline3', bash_command='exit 1'
+    stop_indicators_pipeline = BashOperator(
+        task_id='stop_indicators_pipeline', bash_command='exit 1'
     )
 
     clean_technical_indicators_data = PythonOperator(
@@ -179,7 +170,7 @@ with DAG(
         >> clean_stock_data
         >> store_stock_data_s3
     )
-    check_stock_data_quality >> stop_pipeline
+    check_stock_data_quality >> stop_stock_pipeline
 
     (
         fetch_insider_transaction_data
@@ -187,7 +178,7 @@ with DAG(
         >> clean_insider_transaction_data
         >> store_insider_transaction_data_s3
     )
-    check_transaction_data_quality >> stop_pipeline2
+    check_transaction_data_quality >> stop_transaction_pipeline
 
     (
         fetch_technical_indicators_data
@@ -195,7 +186,7 @@ with DAG(
         >> clean_technical_indicators_data
         >> store_technical_indicators_data_s3
     )
-    check_indicators_data_quality >> stop_pipeline3
+    check_indicators_data_quality >> stop_indicators_pipeline
 
     store_stock_data_s3 >> get_stock_data_s3
     store_insider_transaction_data_s3 >> get_stock_data_s3
