@@ -1,7 +1,8 @@
+import os
+
 import boto3
 import botocore
 import pandas as pd
-import os
 from botocore.config import Config
 
 boto_config = Config(region_name='eu-west-2')

@@ -82,14 +82,15 @@ def train_model(data):
 
     # write models to file
     import pickle
+    import os
 
     with open(
-        '/opt/airflow/data/gold/models/random_forest_model.pkl', 'wb'
+        f'{os.getenv("AIRFLOW_HOME")}/data/gold/models/random_forest_model.pkl', 'wb'
     ) as f:
         pickle.dump(model_rf, f)
         print('Random Forest Regression model saved to file')
     with open(
-        '/opt/airflow/data/gold/models/histgradientboostingregressor_model.pkl',
+        f'{os.getenv("AIRFLOW_HOME")}/data/gold/models/histgradientboostingregressor_model.pkl',
         'wb',
     ) as f:
         pickle.dump(model_hgb, f)

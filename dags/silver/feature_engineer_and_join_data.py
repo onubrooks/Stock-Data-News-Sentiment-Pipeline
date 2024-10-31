@@ -11,7 +11,6 @@ def join_and_merge_datasets(ti):
         task_ids='get_technical_indicators_s3'
     )
 
-    # Convert ticker column to symbol, sort, then merge on 'symbol' and the closest date
     insider_transaction_data['symbol'] = insider_transaction_data[
         'ticker'
     ].str.upper()

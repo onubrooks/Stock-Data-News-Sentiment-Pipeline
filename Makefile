@@ -30,7 +30,7 @@ isort:
 	docker exec webserver isort .
 
 type:
-	docker exec webserver mypy --ignore-missing-imports /opt/airflow
+	docker exec webserver mypy --ignore-missing-imports --explicit-package-bases /opt/airflow
 
 lint: 
 	docker exec webserver flake8 /opt/airflow/dags
