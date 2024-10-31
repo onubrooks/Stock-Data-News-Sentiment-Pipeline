@@ -23,12 +23,22 @@ variable "instance_type" {
 variable "alert_email_id" {
   description = "Email id to send alerts to "
   type        = string
-  default     = "you-name@some-domain.com"
+  default     = "abahonuh@gmail.com"
 }
 
 ## Your repository url
 variable "repo_url" {
   description = "Repository url to clone into production machine"
   type        = string
-  default     = "https://github.com/josephmachado/data_engineering_project_template.git"
+  default     = "https://github.com/josephmachado/Stock-Data-News-Sentiment-Pipeline.git"
 }
+
+variable "aws_s3_bucket" {
+  description = "AWS S3 bucket name"
+  type        = string
+  default     = "stock-data-etl-kjsj353kl3j4"
+}
+
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "name" { default = "dynamic-aws-creds-vault-admin" }

@@ -142,3 +142,23 @@ resource "aws_budgets_budget" "ec2" {
     subscriber_email_addresses = [var.alert_email_id]
   }
 }
+
+resource "aws_s3_bucket" "my_aws_s3_bucket" {
+  bucket = var.aws_s3_bucket
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_public_access_block" "my_aws_s3_bucket_public_access" {
+  bucket = aws_s3_bucket.my_aws_s3_bucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
