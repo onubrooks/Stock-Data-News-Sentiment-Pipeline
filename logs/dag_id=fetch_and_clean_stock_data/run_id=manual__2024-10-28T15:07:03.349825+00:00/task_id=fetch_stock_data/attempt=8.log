@@ -1,0 +1,31 @@
+[2024-10-29T18:27:25.762+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-29T18:27:25.793+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: fetch_and_clean_stock_data.fetch_stock_data manual__2024-10-28T15:07:03.349825+00:00 [queued]>
+[2024-10-29T18:27:25.801+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: fetch_and_clean_stock_data.fetch_stock_data manual__2024-10-28T15:07:03.349825+00:00 [queued]>
+[2024-10-29T18:27:25.802+0000] {taskinstance.py:2306} INFO - Starting attempt 8 of 8
+[2024-10-29T18:27:25.811+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): fetch_stock_data> on 2024-10-28 15:07:03.349825+00:00
+[2024-10-29T18:27:25.821+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=5661) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-29T18:27:25.823+0000] {standard_task_runner.py:63} INFO - Started process 5666 to run task
+[2024-10-29T18:27:25.823+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'fetch_and_clean_stock_data', 'fetch_stock_data', 'manual__2024-10-28T15:07:03.349825+00:00', '--job-id', '238', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmprjocipzk']
+[2024-10-29T18:27:25.826+0000] {standard_task_runner.py:91} INFO - Job 238: Subtask fetch_stock_data
+[2024-10-29T18:27:25.853+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-29T18:27:25.913+0000] {task_command.py:426} INFO - Running <TaskInstance: fetch_and_clean_stock_data.fetch_stock_data manual__2024-10-28T15:07:03.349825+00:00 [running]> on host a5e3407ec3e4
+[2024-10-29T18:27:26.013+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='fetch_and_clean_stock_data' AIRFLOW_CTX_TASK_ID='fetch_stock_data' AIRFLOW_CTX_EXECUTION_DATE='2024-10-28T15:07:03.349825+00:00' AIRFLOW_CTX_TRY_NUMBER='8' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-28T15:07:03.349825+00:00'
+[2024-10-29T18:27:26.015+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-29T18:27:26.721+0000] {python.py:237} INFO - Done. Returned value was:      timestamp    open     high      low   close    volume symbol
+0   2024-10-28  215.50  216.250  212.700  212.91   4993343    IBM
+1   2024-10-25  216.80  218.650  214.385  214.67   8482235    IBM
+2   2024-10-24  220.80  221.320  216.160  218.39  11193440    IBM
+3   2024-10-23  230.41  233.340  230.260  232.75   5791002    IBM
+4   2024-10-22  231.99  232.970  230.670  232.25   3180807    IBM
+..         ...     ...      ...      ...     ...       ...    ...
+95  2024-06-12  171.35  172.470  168.101  169.00   3522698    IBM
+96  2024-06-11  169.98  170.000  166.810  169.32   2951251    IBM
+97  2024-06-10  169.55  170.760  168.880  170.38   3444684    IBM
+98  2024-06-07  168.18  171.305  168.060  170.01   3475495    IBM
+99  2024-06-06  167.38  168.440  166.800  168.20   2207263    IBM
+
+[100 rows x 7 columns]
+[2024-10-29T18:27:26.736+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-29T18:27:26.801+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=fetch_and_clean_stock_data, task_id=fetch_stock_data, run_id=manual__2024-10-28T15:07:03.349825+00:00, execution_date=20241028T150703, start_date=20241029T182725, end_date=20241029T182726
+[2024-10-29T18:27:26.858+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-29T18:27:26.880+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

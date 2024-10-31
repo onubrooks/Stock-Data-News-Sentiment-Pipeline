@@ -1,0 +1,46 @@
+[2024-10-30T11:14:57.897+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-30T11:14:57.929+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Stock-Data-Pipeline.engineer_ml_features manual__2024-10-30T00:33:57.081828+00:00 [queued]>
+[2024-10-30T11:14:57.937+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Stock-Data-Pipeline.engineer_ml_features manual__2024-10-30T00:33:57.081828+00:00 [queued]>
+[2024-10-30T11:14:57.938+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-10-30T11:14:57.948+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): engineer_ml_features> on 2024-10-30 00:33:57.081828+00:00
+[2024-10-30T11:14:57.958+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=20689) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-30T11:14:57.960+0000] {standard_task_runner.py:63} INFO - Started process 20694 to run task
+[2024-10-30T11:14:57.960+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Stock-Data-Pipeline', 'engineer_ml_features', 'manual__2024-10-30T00:33:57.081828+00:00', '--job-id', '280', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipeline.py', '--cfg-path', '/tmp/tmprdcg04fe']
+[2024-10-30T11:14:57.963+0000] {standard_task_runner.py:91} INFO - Job 280: Subtask engineer_ml_features
+[2024-10-30T11:14:57.983+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-30T11:14:58.027+0000] {task_command.py:426} INFO - Running <TaskInstance: Stock-Data-Pipeline.engineer_ml_features manual__2024-10-30T00:33:57.081828+00:00 [running]> on host cf1c99cdc1a8
+[2024-10-30T11:14:58.116+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Stock-Data-Pipeline' AIRFLOW_CTX_TASK_ID='engineer_ml_features' AIRFLOW_CTX_EXECUTION_DATE='2024-10-30T00:33:57.081828+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-30T00:33:57.081828+00:00'
+[2024-10-30T11:14:58.118+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-30T11:14:58.229+0000] {logging_mixin.py:188} INFO -    timestamp   open   high    low  close  ...  SMA EMA   WMA DEMA  T3
+0 1999-11-01  80.00  80.69  77.37  77.62  ...  NaN NaN  None  NaN NaN
+1 1999-11-01  98.50  98.81  96.37  96.75  ...  NaN NaN  None  NaN NaN
+2 1999-11-02  78.00  81.69  77.31  80.25  ...  NaN NaN  None  NaN NaN
+3 1999-11-02  96.75  96.81  93.69  94.81  ...  NaN NaN  None  NaN NaN
+4 1999-11-03  95.87  95.94  93.50  94.37  ...  NaN NaN  None  NaN NaN
+5 1999-11-03  81.62  83.25  81.00  81.50  ...  NaN NaN  None  NaN NaN
+6 1999-11-04  94.44  94.44  90.00  91.56  ...  NaN NaN  None  NaN NaN
+7 1999-11-04  82.06  85.37  80.62  83.62  ...  NaN NaN  None  NaN NaN
+8 1999-11-05  84.62  88.37  84.00  88.31  ...  NaN NaN  None  NaN NaN
+9 1999-11-05  92.75  92.94  90.19  90.25  ...  NaN NaN  None  NaN NaN
+
+[10 rows x 20 columns]
+[2024-10-30T11:14:58.266+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/utils/feature_engineer_and_join_data.py:56 FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+[2024-10-30T11:14:58.272+0000] {python.py:237} INFO - Done. Returned value was:        timestamp  ...  acquisition_or_disposal_D
+0     1999-11-01  ...                      False
+1     1999-11-01  ...                      False
+2     1999-11-02  ...                      False
+3     1999-11-02  ...                      False
+4     1999-11-03  ...                      False
+...          ...  ...                        ...
+17657 2024-10-28  ...                      False
+17658 2024-10-28  ...                      False
+17659 2024-10-29  ...                      False
+17660 2024-10-29  ...                      False
+17661 2024-10-29  ...                      False
+
+[17662 rows x 189 columns]
+[2024-10-30T11:14:58.310+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-30T11:14:58.600+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Stock-Data-Pipeline, task_id=engineer_ml_features, run_id=manual__2024-10-30T00:33:57.081828+00:00, execution_date=20241030T003357, start_date=20241030T111457, end_date=20241030T111458
+[2024-10-30T11:14:58.666+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-30T11:14:58.688+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-30T11:14:58.690+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

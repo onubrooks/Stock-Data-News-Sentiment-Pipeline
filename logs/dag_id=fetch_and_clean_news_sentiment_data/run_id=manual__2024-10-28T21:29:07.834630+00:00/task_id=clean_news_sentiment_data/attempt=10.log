@@ -1,0 +1,59 @@
+[2024-10-28T21:51:26.015+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-28T21:51:26.036+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: fetch_and_clean_news_sentiment_data.clean_news_sentiment_data manual__2024-10-28T21:29:07.834630+00:00 [queued]>
+[2024-10-28T21:51:26.041+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: fetch_and_clean_news_sentiment_data.clean_news_sentiment_data manual__2024-10-28T21:29:07.834630+00:00 [queued]>
+[2024-10-28T21:51:26.041+0000] {taskinstance.py:2306} INFO - Starting attempt 10 of 10
+[2024-10-28T21:51:26.050+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_news_sentiment_data> on 2024-10-28 21:29:07.834630+00:00
+[2024-10-28T21:51:26.059+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=20476) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-28T21:51:26.060+0000] {standard_task_runner.py:63} INFO - Started process 20478 to run task
+[2024-10-28T21:51:26.060+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'fetch_and_clean_news_sentiment_data', 'clean_news_sentiment_data', 'manual__2024-10-28T21:29:07.834630+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmp_pfv1li2']
+[2024-10-28T21:51:26.062+0000] {standard_task_runner.py:91} INFO - Job 92: Subtask clean_news_sentiment_data
+[2024-10-28T21:51:26.084+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-28T21:51:26.118+0000] {task_command.py:426} INFO - Running <TaskInstance: fetch_and_clean_news_sentiment_data.clean_news_sentiment_data manual__2024-10-28T21:29:07.834630+00:00 [running]> on host 66a068bd0545
+[2024-10-28T21:51:26.184+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='fetch_and_clean_news_sentiment_data' AIRFLOW_CTX_TASK_ID='clean_news_sentiment_data' AIRFLOW_CTX_EXECUTION_DATE='2024-10-28T21:29:07.834630+00:00' AIRFLOW_CTX_TRY_NUMBER='10' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-28T21:29:07.834630+00:00'
+[2024-10-28T21:51:26.186+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-28T21:51:26.244+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-28T21:51:26.245+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/utils/stock_data_elt.py", line 210, in clean_news_sentiment_data
+    df['ticker_sentiment'] = df['ticker_sentiment'].apply(lambda x: x[0]['ticker_sentiment_score'] if x else None)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/series.py", line 4764, in apply
+    ).apply()
+      ^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/apply.py", line 1209, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/apply.py", line 1289, in apply_standard
+    mapped = obj._map_values(
+             ^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/algorithms.py", line 1814, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "lib.pyx", line 2926, in pandas._libs.lib.map_infer
+  File "/opt/airflow/dags/utils/stock_data_elt.py", line 210, in <lambda>
+    df['ticker_sentiment'] = df['ticker_sentiment'].apply(lambda x: x[0]['ticker_sentiment_score'] if x else None)
+                                                                                                      ^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+[2024-10-28T21:51:26.260+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=fetch_and_clean_news_sentiment_data, task_id=clean_news_sentiment_data, run_id=manual__2024-10-28T21:29:07.834630+00:00, execution_date=20241028T212907, start_date=20241028T215126, end_date=20241028T215126
+[2024-10-28T21:51:26.267+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 92 for task clean_news_sentiment_data (The truth value of an array with more than one element is ambiguous. Use a.any() or a.all(); 20478)
+[2024-10-28T21:51:26.316+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-10-28T21:51:26.335+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-28T21:51:26.338+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

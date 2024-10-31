@@ -1,0 +1,60 @@
+[2024-10-29T17:55:50.667+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-29T17:55:50.702+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [queued]>
+[2024-10-29T17:55:50.711+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [queued]>
+[2024-10-29T17:55:50.712+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-10-29T17:55:50.722+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): engineer_ml_features> on 2024-10-29 14:30:15.385142+00:00
+[2024-10-29T17:55:50.735+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3471) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-29T17:55:50.737+0000] {standard_task_runner.py:63} INFO - Started process 3480 to run task
+[2024-10-29T17:55:50.737+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'join_and_feature_engineer_all_data', 'engineer_ml_features', 'manual__2024-10-29T14:30:15.385142+00:00', '--job-id', '229', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmpodfn8bb0']
+[2024-10-29T17:55:50.741+0000] {standard_task_runner.py:91} INFO - Job 229: Subtask engineer_ml_features
+[2024-10-29T17:55:50.761+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-29T17:55:50.807+0000] {task_command.py:426} INFO - Running <TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [running]> on host a5e3407ec3e4
+[2024-10-29T17:55:50.896+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='join_and_feature_engineer_all_data' AIRFLOW_CTX_TASK_ID='engineer_ml_features' AIRFLOW_CTX_EXECUTION_DATE='2024-10-29T14:30:15.385142+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-29T14:30:15.385142+00:00'
+[2024-10-29T17:55:50.898+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-29T17:55:50.973+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-29T17:55:50.975+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/utils/feature_engineer_and_join_data.py", line 45, in engineer_features
+    joined_data[numerical_cols] = scaler.fit_transform(joined_data[numerical_cols])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/utils/_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/base.py", line 1098, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 450, in fit
+    return self.partial_fit(X, y)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/base.py", line 1473, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 490, in partial_fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/base.py", line 633, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sklearn/utils/validation.py", line 1087, in check_array
+    raise ValueError(
+ValueError: Found array with 0 sample(s) (shape=(0, 7)) while a minimum of 1 is required by MinMaxScaler.
+[2024-10-29T17:55:50.996+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=join_and_feature_engineer_all_data, task_id=engineer_ml_features, run_id=manual__2024-10-29T14:30:15.385142+00:00, execution_date=20241029T143015, start_date=20241029T175550, end_date=20241029T175550
+[2024-10-29T17:55:51.004+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 229 for task engineer_ml_features (Found array with 0 sample(s) (shape=(0, 7)) while a minimum of 1 is required by MinMaxScaler.; 3480)
+[2024-10-29T17:55:51.033+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-10-29T17:55:51.053+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-29T17:55:51.054+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

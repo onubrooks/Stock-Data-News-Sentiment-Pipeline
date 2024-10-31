@@ -1,0 +1,14 @@
+[2024-10-31T12:46:20.522+0000] {processor.py:161} INFO - Started process (PID=52444) to work on /opt/airflow/dags/bronze/stock_data_pipeline.py
+[2024-10-31T12:46:20.525+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bronze/stock_data_pipeline.py for tasks to queue
+[2024-10-31T12:46:20.527+0000] {logging_mixin.py:188} INFO - [2024-10-31T12:46:20.526+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bronze/stock_data_pipeline.py
+[2024-10-31T12:46:22.308+0000] {logging_mixin.py:188} INFO - [2024-10-31T12:46:22.306+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/bronze/stock_data_pipeline.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/bronze/stock_data_pipeline.py", line 18, in <module>
+    from utils.stock_data_elt import (
+ModuleNotFoundError: No module named 'utils.stock_data_elt'
+[2024-10-31T12:46:22.310+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bronze/stock_data_pipeline.py
+[2024-10-31T12:46:22.334+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bronze/stock_data_pipeline.py took 1.829 seconds

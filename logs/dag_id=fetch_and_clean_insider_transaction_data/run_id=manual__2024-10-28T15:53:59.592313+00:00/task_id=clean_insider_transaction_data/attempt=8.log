@@ -1,0 +1,32 @@
+[2024-10-28T22:00:51.414+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-28T22:00:51.434+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: fetch_and_clean_insider_transaction_data.clean_insider_transaction_data manual__2024-10-28T15:53:59.592313+00:00 [queued]>
+[2024-10-28T22:00:51.439+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: fetch_and_clean_insider_transaction_data.clean_insider_transaction_data manual__2024-10-28T15:53:59.592313+00:00 [queued]>
+[2024-10-28T22:00:51.440+0000] {taskinstance.py:2306} INFO - Starting attempt 8 of 8
+[2024-10-28T22:00:51.445+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_insider_transaction_data> on 2024-10-28 15:53:59.592313+00:00
+[2024-10-28T22:00:51.452+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=21142) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-28T22:00:51.453+0000] {standard_task_runner.py:63} INFO - Started process 21144 to run task
+[2024-10-28T22:00:51.453+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'fetch_and_clean_insider_transaction_data', 'clean_insider_transaction_data', 'manual__2024-10-28T15:53:59.592313+00:00', '--job-id', '100', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmpj63r2eip']
+[2024-10-28T22:00:51.455+0000] {standard_task_runner.py:91} INFO - Job 100: Subtask clean_insider_transaction_data
+[2024-10-28T22:00:51.467+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-28T22:00:51.497+0000] {task_command.py:426} INFO - Running <TaskInstance: fetch_and_clean_insider_transaction_data.clean_insider_transaction_data manual__2024-10-28T15:53:59.592313+00:00 [running]> on host 66a068bd0545
+[2024-10-28T22:00:51.557+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='fetch_and_clean_insider_transaction_data' AIRFLOW_CTX_TASK_ID='clean_insider_transaction_data' AIRFLOW_CTX_EXECUTION_DATE='2024-10-28T15:53:59.592313+00:00' AIRFLOW_CTX_TRY_NUMBER='8' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-28T15:53:59.592313+00:00'
+[2024-10-28T22:00:51.558+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-28T22:00:51.637+0000] {python.py:237} INFO - Done. Returned value was:       transaction_date ticker  ...   shares share_price
+0           2024-09-30    IBM  ...    396.0    221.0800
+1           2024-09-30    IBM  ...    250.0    221.0800
+2           2024-09-30    IBM  ...    453.0    221.0800
+3           2024-09-30    IBM  ...    357.0    221.0800
+4           2024-09-30    IBM  ...    419.0    221.0800
+...                ...    ...  ...      ...         ...
+32636       2003-08-15   AMZN  ...   1300.0      0.0000
+32637       2003-08-14   AMZN  ...  37502.0      7.9300
+32638       2003-08-14   AMZN  ...  37502.0      0.0000
+32639       2003-08-14   AMZN  ...  37502.0     39.8960
+32640              NaT   AMZN  ...   7500.0     52.4367
+
+[31570 rows x 8 columns]
+[2024-10-28T22:00:51.644+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-28T22:00:51.733+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=fetch_and_clean_insider_transaction_data, task_id=clean_insider_transaction_data, run_id=manual__2024-10-28T15:53:59.592313+00:00, execution_date=20241028T155359, start_date=20241028T220051, end_date=20241028T220051
+[2024-10-28T22:00:51.791+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-28T22:00:51.807+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-28T22:00:51.808+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

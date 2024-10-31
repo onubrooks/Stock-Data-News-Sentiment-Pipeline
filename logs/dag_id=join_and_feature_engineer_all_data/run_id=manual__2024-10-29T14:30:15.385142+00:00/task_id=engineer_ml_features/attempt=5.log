@@ -1,0 +1,46 @@
+[2024-10-29T18:28:07.087+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-29T18:28:07.117+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [queued]>
+[2024-10-29T18:28:07.123+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [queued]>
+[2024-10-29T18:28:07.124+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 5
+[2024-10-29T18:28:07.133+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): engineer_ml_features> on 2024-10-29 14:30:15.385142+00:00
+[2024-10-29T18:28:07.141+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=5761) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-29T18:28:07.143+0000] {standard_task_runner.py:63} INFO - Started process 5766 to run task
+[2024-10-29T18:28:07.143+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'join_and_feature_engineer_all_data', 'engineer_ml_features', 'manual__2024-10-29T14:30:15.385142+00:00', '--job-id', '243', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmplv3uxtux']
+[2024-10-29T18:28:07.146+0000] {standard_task_runner.py:91} INFO - Job 243: Subtask engineer_ml_features
+[2024-10-29T18:28:07.165+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-29T18:28:07.208+0000] {task_command.py:426} INFO - Running <TaskInstance: join_and_feature_engineer_all_data.engineer_ml_features manual__2024-10-29T14:30:15.385142+00:00 [running]> on host a5e3407ec3e4
+[2024-10-29T18:28:07.295+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='join_and_feature_engineer_all_data' AIRFLOW_CTX_TASK_ID='engineer_ml_features' AIRFLOW_CTX_EXECUTION_DATE='2024-10-29T14:30:15.385142+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-29T14:30:15.385142+00:00'
+[2024-10-29T18:28:07.296+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-29T18:28:07.370+0000] {logging_mixin.py:188} INFO -    timestamp    open     high      low  ...       EMA       WMA      DEMA        T3
+0 2024-06-06  167.38  168.440  166.800  ...  170.9446  169.0373  167.3198  179.8414
+1 2024-06-07  168.18  171.305  168.060  ...  170.9446  169.0373  167.3198  179.8414
+2 2024-06-10  169.55  170.760  168.880  ...       NaN      None       NaN       NaN
+3 2024-06-11  169.98  170.000  166.810  ...       NaN      None       NaN       NaN
+4 2024-06-12  171.35  172.470  168.101  ...       NaN      None       NaN       NaN
+5 2024-06-13  169.01  169.590  168.335  ...  170.4245  168.1651  167.0332  177.6005
+6 2024-06-14  168.29  169.470  167.230  ...  170.4245  168.1651  167.0332  177.6005
+7 2024-06-17  168.76  169.720  167.500  ...       NaN      None       NaN       NaN
+8 2024-06-18  170.00  170.750  168.380  ...       NaN      None       NaN       NaN
+9 2024-06-20  174.08  174.280  171.220  ...  169.8565  167.4850  166.6171  175.5062
+
+[10 rows x 20 columns]
+[2024-10-29T18:28:07.383+0000] {logging_mixin.py:188} WARNING - /opt/***/dags/utils/feature_engineer_and_join_data.py:56 FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+[2024-10-29T18:28:07.387+0000] {python.py:237} INFO - Done. Returned value was:     timestamp      open  ...  acquisition_or_disposal_A  acquisition_or_disposal_D
+0  2024-06-06  0.000000  ...                      False                      False
+1  2024-06-07  0.011591  ...                      False                       True
+2  2024-06-10  0.031440  ...                      False                       True
+3  2024-06-11  0.037670  ...                      False                       True
+4  2024-06-12  0.057520  ...                      False                      False
+..        ...       ...  ...                        ...                        ...
+95 2024-10-22  0.936105  ...                      False                      False
+96 2024-10-23  0.913214  ...                      False                      False
+97 2024-10-24  0.773979  ...                      False                      False
+98 2024-10-25  0.716024  ...                      False                      False
+99 2024-10-28  0.697189  ...                      False                      False
+
+[100 rows x 34 columns]
+[2024-10-29T18:28:07.406+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-29T18:28:07.444+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=join_and_feature_engineer_all_data, task_id=engineer_ml_features, run_id=manual__2024-10-29T14:30:15.385142+00:00, execution_date=20241029T143015, start_date=20241029T182807, end_date=20241029T182807
+[2024-10-29T18:28:07.485+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-29T18:28:07.508+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-29T18:28:07.509+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

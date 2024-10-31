@@ -1,0 +1,37 @@
+[2024-10-29T12:03:53.365+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-29T12:03:53.403+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: fetch_and_clean_technical_indicators_data.clean_technical_indicators_data manual__2024-10-28T18:18:35.942088+00:00 [queued]>
+[2024-10-29T12:03:53.410+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: fetch_and_clean_technical_indicators_data.clean_technical_indicators_data manual__2024-10-28T18:18:35.942088+00:00 [queued]>
+[2024-10-29T12:03:53.411+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 5
+[2024-10-29T12:03:53.421+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_technical_indicators_data> on 2024-10-28 18:18:35.942088+00:00
+[2024-10-29T12:03:53.430+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=33160) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-29T12:03:53.432+0000] {standard_task_runner.py:63} INFO - Started process 33162 to run task
+[2024-10-29T12:03:53.431+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'fetch_and_clean_technical_indicators_data', 'clean_technical_indicators_data', 'manual__2024-10-28T18:18:35.942088+00:00', '--job-id', '109', '--raw', '--subdir', 'DAGS_FOLDER/stock_data_pipelines.py', '--cfg-path', '/tmp/tmpck4ob550']
+[2024-10-29T12:03:53.435+0000] {standard_task_runner.py:91} INFO - Job 109: Subtask clean_technical_indicators_data
+[2024-10-29T12:03:53.460+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-10-29T12:03:53.524+0000] {task_command.py:426} INFO - Running <TaskInstance: fetch_and_clean_technical_indicators_data.clean_technical_indicators_data manual__2024-10-28T18:18:35.942088+00:00 [running]> on host 66a068bd0545
+[2024-10-29T12:03:53.626+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='fetch_and_clean_technical_indicators_data' AIRFLOW_CTX_TASK_ID='clean_technical_indicators_data' AIRFLOW_CTX_EXECUTION_DATE='2024-10-28T18:18:35.942088+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-28T18:18:35.942088+00:00'
+[2024-10-29T12:03:53.627+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-29T12:03:53.708+0000] {logging_mixin.py:188} INFO - Warning: DataFrame contains missing values.
+[2024-10-29T12:03:53.710+0000] {logging_mixin.py:188} INFO - Warning: Column 'SMA' is not numeric.
+[2024-10-29T12:03:53.714+0000] {logging_mixin.py:188} INFO - Warning: Column 'EMA' is not numeric.
+[2024-10-29T12:03:53.717+0000] {logging_mixin.py:188} INFO - Warning: Column 'DEMA' is not numeric.
+[2024-10-29T12:03:53.719+0000] {logging_mixin.py:188} INFO - Warning: Column 'T3' is not numeric.
+[2024-10-29T12:03:53.729+0000] {python.py:237} INFO - Done. Returned value was:            date symbol       SMA       EMA       WMA      DEMA        T3
+0    2000-01-14   AAPL    0.7472    0.7472    0.7679       NaN       NaN
+1    2000-01-14   AMZN    4.2343    4.2343    4.3191       NaN       NaN
+2    2000-01-14    IBM   54.5151   54.5151   56.3007       NaN       NaN
+3    2000-01-14   MSFT   31.0721   31.0721   32.9764       NaN       NaN
+4    2000-01-21   AAPL    0.7572    0.7498    0.7705       NaN       NaN
+...         ...    ...       ...       ...       ...       ...       ...
+6222 2024-10-28  GOOGL  162.8209  164.8753  163.9057  164.3533  163.9471
+6223 2024-10-28    IBM  216.0040  215.6309  221.1849  228.1437  213.3045
+6220 2024-10-28   AAPL  227.1020  226.9323  228.6140  233.2498  229.5555
+6221 2024-10-28   AMZN  184.3195  185.4626  186.6287  188.2526  182.1488
+6224 2024-10-28   MSFT  421.6150  422.8427  422.7774  422.7184  421.8436
+
+[6225 rows x 7 columns]
+[2024-10-29T12:03:53.739+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-29T12:03:53.828+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=fetch_and_clean_technical_indicators_data, task_id=clean_technical_indicators_data, run_id=manual__2024-10-28T18:18:35.942088+00:00, execution_date=20241028T181835, start_date=20241029T120353, end_date=20241029T120353
+[2024-10-29T12:03:53.890+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-29T12:03:53.920+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-29T12:03:53.922+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
