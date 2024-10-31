@@ -2,13 +2,14 @@ import io
 
 import pandas as pd
 import requests
+import os
 
-API_KEY = '06X745AP7A7Z7ZBR'  # 06X745AP7A7Z7ZBR' # '9PT41Q4ROVCUT4OA'
+API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
 SYMBOLS = ['IBM', 'AAPL', 'GOOGL']
 INDICATORS = ['SMA', 'EMA', 'WMA', 'DEMA']
 DATATYPE = 'csv'
 OUTPUTSIZE = 'full'
-INTERVAL = 'daily'  # 'daily'
+INTERVAL = 'daily'
 BASE_URL = 'https://www.alphavantage.co/query'
 
 
